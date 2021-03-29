@@ -1,0 +1,26 @@
+#pgn-viewer {
+  width: 100%;
+  background-color: var(--light);
+  margin-bottom: 1rem;
+}
+
+.pgn-move {
+  display: inline-block;
+  border: none;
+  text-align: center;
+  color: white;
+  line-height: 1.5rem;
+  background-color: var(--light);
+}
+
+.pgn-move:hover {
+  background-color: var(--accent-light);
+}
+
+.current-move {
+  background-color: var(--accent);
+}
+
+.current-move:hover {
+  background-color: var(--accent);
+}

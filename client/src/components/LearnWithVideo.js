@@ -1,14 +1,14 @@
 import * as React from "react";
 import { useParams } from "react-router-dom";
 
-// import Chess from "chess.js";
+import Chess from "chess.js";
 
 // import { playSound } from "../utils/utils";
-// import { constructPgnTree, getGoodMoves } from "../utils/pgnHelper";
+import { constructPgnTree, getGoodMoves } from "../utils/pgnHelper";
 // import { algToHex, hexToSan } from "../utils/helper";
 
 import Board from "../chessboard/src/components/Board";
-// import PgnViewer from "../components/PgnViewer";
+import PgnViewer from "../components/PgnViewer";
 // import Sidebar from "../components/Sidebar";
 
 import openings from "../assets/data/gothamchess.json";
@@ -21,11 +21,11 @@ function LearnWithVideo() {
   const opening = openings[openingId];
   /* States */
   /* ************ */
-  // const [game, setGame] = React.useState(new Chess());
-  // const [currentNode, setCurrentNode] = React.useState(
-  //   constructPgnTree(opening.pgn)
-  // );
-  // const [pgnVisible, setPgnVisible] = React.useState(true);
+  const [game, setGame] = React.useState(new Chess());
+  const [currentNode, setCurrentNode] = React.useState(
+    constructPgnTree(opening.pgn)
+  );
+  const [pgnVisible, setPgnVisible] = React.useState(true);
 
   /* Refs & Derived State */
   /* ************ */
@@ -93,39 +93,39 @@ function LearnWithVideo() {
   //   });
   // }
 
-  // function goToNode(node) {
-  //   console.log("go to:", node);
-  //   let path = [];
-  //   const endNode = node;
+  function goToNode(node) {
+    console.log("go to:", node);
+    let path = [];
+    const endNode = node;
 
-  //   while (node.move) {
-  //     path.push(node.move);
-  //     node = node.parent;
-  //   }
-  //   console.log(path);
-  //   const newGame = new Chess();
-  //   while (path.length) {
-  //     newGame.move(path.pop());
-  //   }
-  //   setGame(newGame);
-  //   setCurrentNode(endNode);
-  //   boardRef.current.setBoard(newGame.board());
-  // }
+    while (node.move) {
+      path.push(node.move);
+      node = node.parent;
+    }
+    console.log(path);
+    const newGame = new Chess();
+    while (path.length) {
+      newGame.move(path.pop());
+    }
+    setGame(newGame);
+    setCurrentNode(endNode);
+    boardRef.current.setBoard(newGame.board());
+  }
 
-  // function restartLine() {
-  //   let node = currentNode;
-  //   while (node.parent) {
-  //     node = node.parent;
-  //   }
-  //   setCurrentNode(node);
-  //   const newGame = new Chess();
-  //   setGame(newGame);
-  //   boardRef.current.setBoard(newGame.board());
-  // }
+  function restartLine() {
+    let node = currentNode;
+    while (node.parent) {
+      node = node.parent;
+    }
+    setCurrentNode(node);
+    const newGame = new Chess();
+    setGame(newGame);
+    boardRef.current.setBoard(newGame.board());
+  }
 
-  // function togglePgn() {
-  //   setPgnVisible(pgnVisible ? false : true);
-  // }
+  function togglePgn() {
+    setPgnVisible(pgnVisible ? false : true);
+  }
 
   // React.useEffect(() => {
   //   if (currentNode.nextMove === null) {
@@ -182,7 +182,7 @@ function LearnWithVideo() {
 
           <div id={"opening-title"}>{opening.title}</div>
 
-          {/* <div id="sidebox-buttons">
+          <div id="sidebox-buttons">
             <button className="action-button" onClick={restartLine}>
               restart
             </button>
@@ -195,7 +195,7 @@ function LearnWithVideo() {
             currentNode={currentNode}
             goToNode={goToNode}
             style={{ display: pgnVisible ? "block" : "none" }}
-          ></PgnViewer> */}
+          ></PgnViewer>
         </div>
       </div>
     </div>

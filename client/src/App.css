@@ -30,3 +30,19 @@ body {
   height: 100vh;
   box-sizing: border-box;
 }
+
+.action-button {
+  display: inline-block;
+  width: fit-content;
+  background-color: var(--accent);
+  border-radius: 0.5em;
+  border-color: var(--accent);
+  color: #fff;
+  margin: 0.3em;
+  padding: 0.3em 1.5em;
+  font-size: 1em;
+}
+
+.action-button:hover {
+  background-color: var(--accent-light);
+}
