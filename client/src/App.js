@@ -6,15 +6,16 @@ import Overview from "./components/Overview";
 import LearnWithVideo from "./components/LearnWithVideo";
 
 import "./App.css";
-import "./assets/css/gothamchess.css";
+import "./assets/css/youtube.css";
 
 function App() {
   return (
     <Router>
       <Navbar></Navbar>
       <Switch>
-        <Route path="/gothamchess/:id" component={LearnWithVideo}></Route>
-        <Route path="*" component={Overview}></Route>
+        <Route path="/opening/:id" component={LearnWithVideo}></Route>
+        <Route path="/overview/:id" component={Overview}></Route>
+        <Route path="/*"></Route>
       </Switch>
     </Router>
   );

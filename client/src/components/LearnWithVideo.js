@@ -9,9 +9,8 @@ import { algToHex, hexToSan } from "../utils/helper";
 
 import Board from "../chessboard/src/components/Board";
 import PgnViewer from "../components/PgnViewer";
-// import Sidebar from "../components/Sidebar";
 
-import openings from "../assets/data/gothamchess.json";
+import openings from "../assets/data/youtube.json";
 import "../assets/css/learnwithvideo.css";
 
 function LearnWithVideo() {
@@ -173,7 +172,6 @@ function LearnWithVideo() {
 
   return (
     <div style={{ display: "flex", width: "100%" }}>
-      {/* <Sidebar></Sidebar> */}
       <div id="main">
         <div id="appgame">
           <Board

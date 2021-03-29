@@ -17,7 +17,7 @@ function Navbar() {
       <div
         className="nav-link"
         onClick={() => {
-          history.push("/gothamchess");
+          history.push("/overview/gothamchess");
         }}
       >
         GothamChess
@@ -25,7 +25,7 @@ function Navbar() {
       <div
         className="nav-link"
         onClick={() => {
-          history.push("/white");
+          history.push("/overview/white-openings");
         }}
       >
         White openings
@@ -33,7 +33,7 @@ function Navbar() {
       <div
         className="nav-link"
         onClick={() => {
-          history.push("/black");
+          history.push("/overview/black-openings");
         }}
       >
         Black openings
