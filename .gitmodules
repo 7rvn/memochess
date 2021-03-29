@@ -1,0 +1,3 @@
+[submodule "client/src/chessboard"]
+	path = client/src/chessboard
+	url = https://github.com/7rvn/chessboard.git
