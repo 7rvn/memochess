@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 
 import "../assets/css/overview.css";
 
-import openings from "../assets/data/gothamchess";
+import openings from "../assets/data/gothamchess.json";
 
 function Overview() {
   const history = useHistory();
