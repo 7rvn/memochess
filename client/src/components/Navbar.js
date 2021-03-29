@@ -14,6 +14,7 @@ function Navbar() {
         Chess
       </div>
       <div className="nav-subtitle">PGN with video</div>
+      <div className="divider"></div>
       <div
         className="nav-link"
         onClick={() => {
@@ -39,6 +40,7 @@ function Navbar() {
         Black openings
       </div>
       <div className="nav-subtitle">PGN only</div>
+      <div className="divider"></div>
       <div
         className="nav-link"
         onClick={() => {

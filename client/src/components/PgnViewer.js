@@ -57,7 +57,9 @@ function PgnViewer({ tree, currentNode, goToNode, style }) {
   constructPgnDivs(pgntree);
   return (
     <div id="pgn-viewer" style={style}>
+      <div className="divider"></div>
       {out}
+      <div className="divider"></div>
     </div>
   );
 }

@@ -1,10 +1,13 @@
 :root {
-  --dark: #222629;
-  --light: #474b4f;
-  --lighter: #6b6e70;
-  --accent: #61892f;
+  --dark: #1e1e24;
+  --grey: #d1ccdc;
+  --blue: #3149d0;
+  --blue-light: #8b98e5;
+  --red: #ed254e;
+  --red-light: #f15574;
   --accent-light: #86c232;
   --accent-alt: #b0c317;
+  --border-radius: 0.3em;
 }
 * {
   font-family: "Montserrat", sans-serif;
@@ -40,11 +43,17 @@ body {
   box-sizing: border-box;
 }
 
+#board-board {
+  border-radius: var(--border-radius);
+  overflow: hidden;
+}
+
 .navbar {
   box-sizing: border-box;
   height: 100vh;
   min-width: 10rem;
-  background-color: var(--light);
+  background-color: var(--blue);
+  border-radius: 0 var(--border-radius) var(--border-radius) 0;
 }
 
 .nav-title {
@@ -52,8 +61,7 @@ body {
   text-align: center;
   padding: 0.4em 0;
   cursor: pointer;
-  background-color: var(--accent);
-  border-radius: 0.2em;
+  border-radius: var(--border-radius);
   width: calc(100% - 0.5em);
   margin: 0.5em auto;
   margin-bottom: 1em;
@@ -67,14 +75,20 @@ body {
   cursor: default;
 }
 
+.divider {
+  margin: 0 auto;
+  height: 0.1em;
+  width: 90%;
+  border-bottom: 1px solid white;
+}
+
 .nav-link {
   width: 90%;
   font-size: 1em;
   text-align: center;
-  background-color: var(--dark);
   padding: 0.5em 0;
   margin: 0.5em auto;
-  border-radius: 0.2em;
+  border-radius: var(--border-radius);
   cursor: pointer;
 }
 
@@ -86,9 +100,8 @@ body {
 .action-button {
   display: inline-block;
   width: fit-content;
-  background-color: var(--accent);
-  border-radius: 0.5em;
-  border-color: var(--accent);
+  background-color: var(--blue);
+  border-radius: var(--border-radius);
   color: #fff;
   margin: 0.3em;
   padding: 0.3em 1.5em;
@@ -96,9 +109,9 @@ body {
 }
 
 .action-button:hover {
-  background-color: var(--accent-light);
+  background-color: var(--red);
 }
 
 .accent-alt {
-  background-color: var(--accent-alt);
+  background-color: var(--red);
 }

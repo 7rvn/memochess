@@ -11,7 +11,9 @@ function Overview() {
   const overviewId = routerParams.id;
 
   let allopenings;
-  if (overviewId === "white-openings") {
+  if (!overviewId || overviewId === "all-openings") {
+    allopenings = Object.entries(openings);
+  } else if (overviewId === "white-openings") {
     allopenings = Object.entries(openings).filter(function (o) {
       return o[1].color === "white";
     });

@@ -179,6 +179,11 @@ function LearnWithVideo() {
             onMakeMove={handleMove}
             onActivatePiece={handleActivatingPiece}
             initialOrientation={opening.color}
+            colors={{
+              darksquares: "var(--blue)",
+              highlight: "var(--blue-light)",
+              wrong: "var(--red)",
+            }}
           ></Board>
         </div>
 

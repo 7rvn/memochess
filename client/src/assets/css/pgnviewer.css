@@ -1,7 +1,9 @@
 #pgn-viewer {
   width: 100%;
-  background-color: var(--light);
+  background-color: var(--blue);
   margin-bottom: 1rem;
+  padding: 0.7em;
+  border-radius: var(--border-radius);
 }
 
 .pgn-move {
@@ -10,25 +12,17 @@
   text-align: center;
   color: white;
   line-height: 1.5rem;
-  background-color: var(--light);
+  background-color: var(--blue);
 }
 
 .pgn-move:hover {
-  background-color: var(--accent-light);
+  background-color: var(--red);
 }
 
 .current-move {
-  background-color: var(--accent);
+  background-color: var(--blue);
 }
 
 .current-move:hover {
-  background-color: var(--accent);
-}
-
-.last-move {
-  background-color: var(--accent-alt);
-}
-
-.last-move:hover {
-  background-color: var(--accent-alt);
+  background-color: var(--blue);
 }

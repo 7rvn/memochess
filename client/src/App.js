@@ -15,7 +15,8 @@ function App() {
       <Switch>
         <Route path="/opening/:id" component={LearnWithVideo}></Route>
         <Route path="/overview/:id" component={Overview}></Route>
-        <Route path="/*"></Route>
+        <Route path="/all-openings" component={Overview}></Route>
+        <Route path="/*" component={Overview}></Route>
       </Switch>
     </Router>
   );
