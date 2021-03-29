@@ -5,7 +5,7 @@ import Chess from "chess.js";
 
 // import { playSound } from "../utils/utils";
 import { constructPgnTree, getGoodMoves } from "../utils/pgnHelper";
-// import { algToHex, hexToSan } from "../utils/helper";
+import { algToHex, hexToSan } from "../utils/helper";
 
 import Board from "../chessboard/src/components/Board";
 import PgnViewer from "../components/PgnViewer";
@@ -70,28 +70,28 @@ function LearnWithVideo() {
   //   }
   // }
 
-  // function handleActivatingPiece({ rank, file }) {
-  //   const sanFrom = hexToSan(rank, file);
-  //   const isTurn = game.turn() === game.get(sanFrom)?.color;
+  function handleActivatingPiece({ rank, file }) {
+    const sanFrom = hexToSan(rank, file);
+    const isTurn = game.turn() === game.get(sanFrom)?.color;
 
-  //   if (!isTurn) {
-  //     return false;
-  //   }
+    if (!isTurn) {
+      return false;
+    }
 
-  //   const out = game.moves({ verbose: true, square: sanFrom }).map((m) => {
-  //     const hex = algToHex(m.to);
-  //     const type =
-  //       m.flags.includes("c") || m.flags.includes("e")
-  //         ? "capture-hint"
-  //         : "hint";
-  //     return { rank: hex[0], file: hex[1], type: type };
-  //   });
+    const out = game.moves({ verbose: true, square: sanFrom }).map((m) => {
+      const hex = algToHex(m.to);
+      const type =
+        m.flags.includes("c") || m.flags.includes("e")
+          ? "capture-hint"
+          : "hint";
+      return { rank: hex[0], file: hex[1], type: type };
+    });
 
-  //   boardRef.current.addHighlights({
-  //     squares: out,
-  //     type: "legalMoves",
-  //   });
-  // }
+    boardRef.current.addHighlights({
+      squares: out,
+      type: "legalMoves",
+    });
+  }
 
   function goToNode(node) {
     console.log("go to:", node);
@@ -163,7 +163,7 @@ function LearnWithVideo() {
           <Board
             ref={boardRef}
             // onMakeMove={handleMove}
-            // onActivatePiece={handleActivatingPiece}
+            onActivatePiece={handleActivatingPiece}
             initialOrientation={opening.color}
           ></Board>
         </div>
