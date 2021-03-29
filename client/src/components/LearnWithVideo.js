@@ -172,7 +172,7 @@ function LearnWithVideo() {
   }, [game, opening, currentNode]);
 
   return (
-    <div style={{ display: "flex", minWidth: "100vw" }}>
+    <div style={{ display: "flex", width: "100%" }}>
       {/* <Sidebar></Sidebar> */}
       <div id="main">
         <div id="appgame">

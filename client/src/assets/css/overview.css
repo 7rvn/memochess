@@ -12,8 +12,8 @@
 }
 
 .thumbnail {
-  width: 27vw;
-  height: calc(27vw / (16 / 9));
+  width: 23vw;
+  height: calc(23vw / (16 / 9));
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
