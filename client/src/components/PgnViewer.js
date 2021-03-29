@@ -31,7 +31,16 @@ function PgnViewer({ tree, currentNode, goToNode, style }) {
 
       node = node.nextMove;
     }
-    const style = currentNode?.id === node?.id ? " current-move" : "";
+
+    let style = "";
+    if (currentNode?.id === node?.id) {
+      if (currentNode.nextMove) {
+        style = " current-move";
+      } else {
+        style = " last-move";
+      }
+    }
+
     out.push(
       <button
         className={"pgn-move" + style}

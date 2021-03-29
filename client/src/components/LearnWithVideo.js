@@ -186,20 +186,27 @@ function LearnWithVideo() {
 
         <div className="flex-column" id="sidebox">
           <div className="video-container" id={openingId}>
-            {/* <iframe
+            <iframe
               id="yt-player"
               src={"https://www.youtube.com/embed/" + opening.youtube}
               title="YouTube video player"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
-            ></iframe> */}
+            ></iframe>
           </div>
 
           <div id={"opening-title"}>{opening.title}</div>
 
           <div id="sidebox-buttons">
-            <button className="action-button" onClick={restartLine}>
+            <button
+              className={
+                currentNode.nextMove
+                  ? "action-button"
+                  : "action-button accent-alt"
+              }
+              onClick={restartLine}
+            >
               restart
             </button>
             <button className="action-button" onClick={togglePgn}>

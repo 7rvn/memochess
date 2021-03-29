@@ -4,6 +4,7 @@
   --lighter: #6b6e70;
   --accent: #61892f;
   --accent-light: #86c232;
+  --accent-alt: #b0c317;
 }
 * {
   font-family: "Montserrat", sans-serif;
@@ -50,4 +51,8 @@ body {
 
 .action-button:hover {
   background-color: var(--accent-light);
+}
+
+.accent-alt {
+  background-color: var(--accent-alt);
 }

@@ -24,3 +24,11 @@
 .current-move:hover {
   background-color: var(--accent);
 }
+
+.last-move {
+  background-color: var(--accent-alt);
+}
+
+.last-move:hover {
+  background-color: var(--accent-alt);
+}
