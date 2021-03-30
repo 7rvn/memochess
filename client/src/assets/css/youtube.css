@@ -1,7 +1,6 @@
 #traxler {
   background-image: url("../img/thumbnails/traxler.jpeg");
 }
-
 #trompowsky {
   background-image: url("../img/thumbnails/trompowsky.jpeg");
 }
@@ -11,11 +10,21 @@
 #winggambit {
   background-image: url("../img/thumbnails/winggambit.jpeg");
 }
-
 #bdg {
   background-image: url("../img/thumbnails/bdg.jpeg");
 }
-
 #vienna {
   background-image: url("../img/thumbnails/vienna.jpeg");
+}
+#friedliver {
+  background-image: url("../img/thumbnails/friedliver.jpeg");
+}
+#rozmanfrench {
+  background-image: url("../img/thumbnails/rozmanfrench.jpeg");
+}
+#godleygambit {
+  background-image: url("../img/thumbnails/godleygambit.jpeg");
+}
+#danishgambit {
+  background-image: url("../img/thumbnails/danishgambit.jpeg");
 }

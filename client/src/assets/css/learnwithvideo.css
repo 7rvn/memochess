@@ -11,15 +11,8 @@
   height: 100%;
 }
 
-#sidebox {
-  max-width: calc(35vh * (16 / 9));
-}
-
-#sidebox-buttons {
-  margin-bottom: 1em;
-}
-
 .video-container {
+  margin: 0 auto;
   width: calc(35vh * (16 / 9));
   height: 35vh;
   background-repeat: no-repeat;

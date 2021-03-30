@@ -1,54 +1,40 @@
 import * as React from "react";
-import { useHistory } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 function Navbar() {
-  const history = useHistory();
   return (
     <div className="navbar">
-      <div
-        className="nav-title"
-        onClick={() => {
-          history.push("/");
-        }}
-      >
+      <NavLink to="/" className="nl nav-title">
         Chess
-      </div>
+      </NavLink>
       <div className="nav-subtitle">PGN with video</div>
       <div className="divider"></div>
-      <div
-        className="nav-link"
-        onClick={() => {
-          history.push("/overview/gothamchess");
-        }}
+      <NavLink
+        to="/overview/gothamchess"
+        activeClassName="selected"
+        className="nl nav-link"
       >
-        GothamChess
-      </div>
-      <div
-        className="nav-link"
-        onClick={() => {
-          history.push("/overview/white-openings");
-        }}
+        Gothamchess
+      </NavLink>
+      <NavLink
+        to="/overview/white-openings"
+        activeClassName="selected"
+        className="nl nav-link"
       >
-        White openings
-      </div>
-      <div
-        className="nav-link"
-        onClick={() => {
-          history.push("/overview/black-openings");
-        }}
+        White Openings
+      </NavLink>
+      <NavLink
+        to="/overview/black-openings"
+        activeClassName="selected"
+        className="nl nav-link"
       >
-        Black openings
-      </div>
+        Black Openings
+      </NavLink>
       <div className="nav-subtitle">PGN only</div>
       <div className="divider"></div>
-      <div
-        className="nav-link"
-        onClick={() => {
-          history.push("/custom");
-        }}
-      >
+      <NavLink to="/custom" activeClassName="selected" className="nl nav-link">
         import PGN
-      </div>
+      </NavLink>
     </div>
   );
 }

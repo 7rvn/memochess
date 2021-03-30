@@ -5,8 +5,8 @@
   --blue-light: #8b98e5;
   --red: #ed254e;
   --red-light: #f15574;
-  --accent-light: #86c232;
-  --accent-alt: #b0c317;
+  --square: #3149d0;
+  --square-alt: #00a5ff;
   --border-radius: 0.3em;
 }
 * {
@@ -31,6 +31,12 @@ body {
   flex-direction: row;
   width: 100%;
   min-height: 100vh;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: auto;
 }
 
 #main {
@@ -48,12 +54,23 @@ body {
   overflow: hidden;
 }
 
+#sidebox {
+  min-width: 20vw;
+}
+
+#sidebox-buttons {
+  margin-bottom: 1em;
+}
+
 .navbar {
   box-sizing: border-box;
   height: 100vh;
   min-width: 10rem;
   background-color: var(--blue);
   border-radius: 0 var(--border-radius) var(--border-radius) 0;
+  position: sticky;
+  top: 0;
+  align-self: flex-start;
 }
 
 .nav-title {
@@ -67,11 +84,15 @@ body {
   margin-bottom: 1em;
 }
 
+.nav-title:hover {
+  background-color: var(--red);
+}
+
 .nav-subtitle {
   font-size: 1.1em;
   text-align: center;
-  margin-top: 1em;
-  margin-bottom: 0.5em;
+  margin-top: 1.5em;
+  margin-bottom: 0.3em;
   cursor: default;
 }
 
@@ -90,6 +111,16 @@ body {
   margin: 0.5em auto;
   border-radius: var(--border-radius);
   cursor: pointer;
+}
+
+.nl {
+  color: white;
+  text-decoration: none;
+  display: block;
+}
+
+.nav-link:hover {
+  background-color: var(--red);
 }
 
 .flex-column {
@@ -113,5 +144,9 @@ body {
 }
 
 .accent-alt {
+  background-color: var(--red);
+}
+
+.selected {
   background-color: var(--red);
 }

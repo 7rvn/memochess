@@ -108,7 +108,6 @@ function LearnWithVideo() {
   }
 
   function goToNode(node) {
-    console.log("go to:", node);
     let path = [];
     const endNode = node;
 
@@ -116,7 +115,6 @@ function LearnWithVideo() {
       path.push(node.move);
       node = node.parent;
     }
-    console.log(path);
     const newGame = new Chess();
     while (path.length) {
       newGame.move(path.pop());
@@ -180,8 +178,8 @@ function LearnWithVideo() {
             onActivatePiece={handleActivatingPiece}
             initialOrientation={opening.color}
             colors={{
-              darksquares: "var(--blue)",
-              highlight: "var(--blue-light)",
+              darksquares: "var(--square)",
+              highlight: "var(--square-alt)",
               wrong: "var(--red)",
             }}
           ></Board>
@@ -220,7 +218,10 @@ function LearnWithVideo() {
             tree={currentNode}
             currentNode={currentNode}
             goToNode={goToNode}
-            style={{ display: pgnVisible ? "block" : "none" }}
+            style={{
+              filter: pgnVisible ? "blur(0)" : "blur(0.2em)",
+              pointerEvents: pgnVisible ? "auto" : "none",
+            }}
           ></PgnViewer>
         </div>
       </div>

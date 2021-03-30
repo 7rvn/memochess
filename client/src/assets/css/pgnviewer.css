@@ -4,6 +4,7 @@
   margin-bottom: 1rem;
   padding: 0.7em;
   border-radius: var(--border-radius);
+  transition: 0.1s filter linear;
 }
 
 .pgn-move {
@@ -19,10 +20,12 @@
   background-color: var(--red);
 }
 
-.current-move {
-  background-color: var(--blue);
+.current-move,
+.current-move:hover {
+  background-color: var(--red);
 }
 
-.current-move:hover {
-  background-color: var(--blue);
+.last-move,
+.lastmove:hover {
+  background-color: var(--red);
 }

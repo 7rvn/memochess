@@ -1,44 +1,72 @@
 {
   "trompowsky": {
-  	"author": "gothamchess",
+    "author": "gothamchess",
     "title": "Trompowsky Attack",
     "pgn": "1. d4 Nf6 2. Bg5 d5 (2... e6 3. Nd2 c5 4. e3 Nc6 5. c3 d5 6. Bd3) (2... c5 3. d5 Qb6 (3... Ne4) 4. Nc3 Qxb2 5. Bd2 Qb6 6. e4) (2... g6 3. Bxf6 exf6 4. e3) ( 2... Ne4 3. h4 (3. Bf4 d5 (3... c5 4. d5 Qb6 5. Bc1 g6 6. f3 Nf6 7. e4) 4. e3 e6 5. Bd3) 3... c5 4. d5 Nxg5) 3. e3 (3. Bxf6 exf6 (3... gxf6 4. e3) 4. e3 Bd6 5. c4) 3... e6 4. Bd3 Be7 5. Nd2 c5 6. c3 Nc6 7. f4 O-O 8. Bxf6 Bxf6 9. Ngf3 *",
     "youtube": "79-toxo-ebU",
     "color": "white"
   },
   "winggambit": {
-  	"author": "gothamchess",
+    "author": "gothamchess",
     "title": "Wing Gambit",
     "pgn": "1. e4 e6 (1... c5 2. Nf3 e6 (2... d6 3. b4 cxb4 4. d4 (4. a3 bxa3 5. Nxa3 Nc6 6. Bb2 Nf6 7. e5) 4... Nf6 5. Bd3 g6 6. a3 bxa3 7. O-O Bg7 8. Nxa3 O-O 9. c3 a6 10. Bg5 Bg4 (10... h6 11. Bh4) 11. Re1 Nc6 12. Nc2 Rc8 13. Ne3 Bxf3 14. Qxf3) 3. b4) 2. Nf3 d5 3. e5 c5 4. b4 cxb4 (4... c4 5. c3 a5 6. b5 Nd7 7. d4) (4...d4 5. bxc5 Bxc5 6. Ba3) (4... b6 5. c3 cxb4 6. cxb4) 5. a3 Nc6 (5... bxa3 6. d4 Nc6 7. c3 Bd7 8. Bd3 Nge7 9. Nxa3) 6. axb4 Bxb4 7. c3 Be7 8. d4 f6 9. Bd3 fxe5 10. dxe5 Qc7 11. Qe2 *",
     "youtube": "LMBF4FGzDD4",
     "color": "white"
   },
   "bdg": {
-  	"author": "gothamchess",
+    "author": "gothamchess",
     "title": "Blackmar-Diemer Gambit",
     "pgn": "1. d4 d5 2. e4 dxe4 (2... e6) (2... c6) (2... Nf6) 3. Nc3 Nf6 (3... Bf5 4. f3) (3... f5 4. f3) 4. f3 (4. Bg5 Bf5 5. f3) 4... exf3 (4... e3 5. Bxe3) (4... Nc6 5. d5 (5. Be3) 5... Ne5 6. fxe4 e6 7. Nf3 Nxf3+ 8. Qxf3 exd5 9. exd5 Bc5 10. Bg5 O-O 11. O-O-O) (4... Bf5 5. Bg5) (4... c5 5. d5) 5. Nxf3 Bf5 (5... Bg4 6. h3 (6. Bc4 e6 7. Be3 Nc6 8. Qe2) 6... Bh5 7. g4 Bg6 8. Ne5 Nbd7 (8... e6 9. Bg2 c6 10. h4) 9. Qe2 e6 10. h4 Nxe5 11. dxe5 Nd5 12. h5 Nxc3 13. bxc3) 6. Bd3 Bxd3 7. Qxd3 c6 8. Bf4 e6 9. O-O-O *",
     "youtube": "mxtUxgupAHY",
     "color": "white"
   },
   "beefeater": {
-  	"author": "gothamchess",
-    "title": "Beef Eater",
+    "author": "gothamchess",
+    "title": "The Beef Eater",
     "pgn": "1. d4 g6 2. c4 (2. e4 Bg7) 2... Bg7 3. Nc3 (3. e4 d6) (3. Nf3 c5 4. d5 f5) 3... c5 4. d5 Bxc3+ 5. bxc3 f5 6. Nf3 (6. h4 Qa5) (6. e4 fxe4 7. f3 e5 8. dxe6 (8. Nh3 d6) 8... Nc6 9. exd7+ Bxd7) (6. Bf4 d6 7. e3 Qa5 8. Qc2 Nf6) 6... Nf6 7. Bf4 (7. g3 Qa5 8. Qb3) (7. Bh6 Qa5 8. Qc2 d6 9. e3 Nbd7 10. Bd3) 7... d6 8. e3 Qa5 9. Qc2 Nbd7 *",
     "youtube": "P0KL1FF2zOw",
     "color": "white"
   },
   "traxler": {
-  	"author": "gothamchess",
+    "author": "gothamchess",
     "title": "Traxler Counter-Attack",
     "pgn": "1. e4 e5 2. Nf3 Nc6 3. Bc4 Nf6 4. Ng5 (4. O-O Nxe4 5. d4 d5 6. Bb5 exd4 7. Nxd4 Bd7) 4... Bc5 5. Nxf7 (5. O-O) (5. d4 d5 6. exd5 Nxd4) (5. Bxf7+ Ke7 6. Bd5 (6. Bc4) (6. Bb3 Rf8 7. O-O d6 8. Nc3 Qe8 9. Nd5+ Kd8 10. d3 h6 11. Nf3 Bg4)) 5... Bxf2+ 6. Kxf2 (6. Kf1 Qe7 7. Nxh8 (7. Qf3 Rf8) 7... d5 8. exd5 Nd4 9. c3 Bg4 10. Qa4+ Nd7) 6... Nxe4+ 7. Ke3 (7. Kg1 Qh4 8. Qf3 (8. Qf1 Rf8 9. d3 Nd6) (8. g3 Nxg3 9. hxg3 Qxg3+ 10. Kf1 Rf8 11. Qh5 d5 12. Bxd5 Nb4) 8... Nd4 9. Qf1 Rf8) (7. Kf1 Qh4 8. Qf3 Nd4 9. g3 Qh3+ 10. Qg2 Qf5+) (7. Kf3 Qf6+) 7... Qh4 8. Qf3 (8. g3 Nxg3 9. hxg3 Qd4+ 10. Kf3 d5 11. Rh4) (8. d3 Qf2+ 9. Kxe4 d5+ 10. Kxd5 Qd4#) 8... Nf6 9. Nxh8 Nd4 10. Qf1 d5 11. Bb3 Ng4+ 12. Kd3 Nf2+ 13. Kc3 Ne2+ 14. Qxe2 Qd4#",
     "youtube": "v1jkj-HPLdw",
     "color": "black"
   },
   "vienna": {
-  	"author": "gothamchess",
+    "author": "gothamchess",
     "title": "Vienna Gambit & System",
     "pgn": "1. e4 e5 2. Nc3 Nf6 (2... Nc6 3. Bc4 Bc5 (3... d6 4. d3) (3... Nf6 4. d3 Bc5 5. f4 d6 6. Nf3 Ng4 (6... O-O 7. f5) 7. Ng5 O-O 8. f5 Bf2+ 9. Kf1 Ne3+ 10. Bxe3 Bxe3 11. h4 Bxg5 12. hxg5 Qxg5 13. Rh5 Qf4+ 14. Kg1) 4. Qg4 Qf6 5. Nd5 Qxf2+ 6. Kd1 Kf8 7. Nh3 h5 8. Qg5 f6 9. Qg6 Rh6 10. Ne7) 3. f4 d5 (3... exf4 4. e5 Ng8 5. Nf3 d6 6. d4 dxe5 7. Qe2 Bb4 8. Qxe5+ Qe7 9. Bxf4) (3... d6 4. Nf3 Nc6 5. Bb5 Bd7 6. d3) 4. fxe5 Nxe4 5. Qf3 Nxc3 (5... f5 6. d3 Nxc3 7. bxc3 d4 (7...Be6) 8. Qg3 dxc3 9. Be2 Be6 10. Bf3 Nc6 11. Ne2 Qd7 12. Be3 Nb4 13. Rc1) (5...Nc6 6. Bb5 Nxc3 7. dxc3 Qh4+ 8. g3 Qe4+) 6. bxc3 (6. dxc3 Be6 7. Bf4 c5 8. O-O-O Nc6 9. Bc4) 6... Be7 7. d4 O-O 8. Bd3 Be6 9. Ne2 c5 10. O-O Nc6 11. Be3 *",
     "youtube": "JVxENCPcCjU",
+    "color": "white"
+  },
+  "friedliver": {
+    "author": "gothamchess",
+    "title": "Fried Liver Attack",
+    "pgn": "1. e4 e5 2. Nf3 Nc6 3. Bc4 Nf6 4. Ng5 d5 (4... Bc5 5. Bxf7+ (5. Nxf7) 5... Ke7 6. Bb3) (4... Qe7 5. Bxf7+ Kd8 6. Bb3) (4... Nxe4 5. Bxf7+ Ke7 6. d4 h6 7. Nxe4 Kxf7 8. d5) (4... h6 5. Nxf7) 5. exd5 Nxd5 (5... Na5 6. Bb5+ (6. d3 h6 7. Nf3 e4 8. Qe2 Nxc4 9. dxc4 Bc5 10. Nfd2 O-O) 6... c6 7. dxc6 bxc6 8. Bd3) (5... b5 6. Bf1 h6 (6... Nd4 7. c3 Nxd5 8. cxd4 Qxg5 9. Bxb5+ Kd8 10. dxe5 (10. Qf3 exd4 11. Bc6 Nf4 12. Bxa8 Bg4 13. Qe4 Bd6)) 7. Nxf7 Kxf7 8. dxc6 Be6) (5... Nd4 6. c3 b5 7. Bf1 Nxd5 8. cxd4 Qxg5) 6. Nxf7 Kxf7 7. Qf3+ Ke6 8. Nc3 Ncb4 9. O-O c6 10. d4 *",
+    "youtube": "hLFSufXxtuI",
+    "color": "white"
+  },
+  "rozmanfrench": {
+    "author": "gothamchess",
+    "title": "Rozman French Defense",
+    "pgn": "1. e4 e6 2. d4 d5 3. Nc3 (3. Nd2 dxe4) 3... dxe4 4. Nxe4 Nf6 5. Nxf6+ (5. Bg5 Be7 6. Bxf6 (6. Nxf6+ Bxf6 7. Bxf6 Qxf6 (7... gxf6)) 6... gxf6 (6... Bxf6)) (5. Ng3 c5) 5... gxf6 6. Nf3 Nc6 7. Bd3 (7. g3 e5 8. d5 Nb4 9. c4 Bf5 10. Qa4+ b5 11. Qxb5+ c6 12. dxc6 Nc2+ 13. Ke2 Qd3#) (7. Bb5 Qd5 (7... Qd6)) (7. c4 b6 8. d5 exd5 9. cxd5 Bb4+) (7. Be3 Qd7 8. g3 b6 9. Bg2 Bb7 10. O-O O-O-O 11. c4 h5 12. Qe2 Kb8 {Following Aharon - Ivanisevic, 2015}) 7... b6 8. O-O Bb7 9. Be3 Qd7 10. a3 O-O-O 11. b4 Rg8 12. c3 Bd6 13. c4 Ne7 14. c5 Bxh2+ 15. Kxh2 Qd5 16. b5 Qh5+ 17. Kg1 Bxf3 *",
+    "youtube": "vLH1Yw6skaI",
+    "color": "black"
+  },
+  "godleygambit": {
+    "author": "gothamchess",
+    "title": "Godley Gambit",
+    "pgn": "1. e4 c6 2. d4 d5 3. exd5 Nf6 4. dxc6 Nxc6 5. Nf3 (5. Bb5 Qd5 6. Bxc6+ Qxc6 7. Nf3 Bg4) (5. Be3 e5) (5. c3 e5 6. Nf3 e4) 5... e5 6. dxe5 (6. Nxe5 Nxe5 (6... Qxd4 7. Qxd4 Nxd4 8. Bd3 Bf5 9. Bxf5 Nxf5 10. O-O Nd4 11. Nc3) 7. dxe5 Qxd1+ 8. Kxd1 Ng4 9. Bb5+) (6. c3 e4 7. Nfd2 Bd6) (6. Bb5 Bg4 7. O-O (7. Bxc6+ bxc6 8. dxe5 Qxd1+ 9. Kxd1 O-O-O+ 10. Bd2 Nd7) 7... exd4 8. Re1+ Be7) 6... Qxd1+ 7. Kxd1 Ng4 8. Ke1 (8. Be3 Nxe3+ 9. fxe3 Bc5) *",
+    "youtube": "q-D_2hpqnds",
+    "color": "black"
+  },
+  "danishgambit": {
+    "author": "gothamchess",
+    "title": "Danish Gambit",
+    "pgn": "1. e4 e5 2. d4 exd4 3. c3 dxc3 (3... d5 4. exd5 Qxd5 5. cxd4 Nc6 6. Nf3 Bg4 (6... Nf6 7. Nc3 Qa5 8. d5) 7. Be2 O-O-O 8. Nc3 Bb4 9. O-O Bxc3 10. bxc3 Nf6) (3... d3) (3... Qe7 4. cxd4 Qxe4+ 5. Be3 Bb4+ 6. Nc3 Nf6 7. Nf3 Nd5 8. Qd2 Nxe3 9. fxe3 Qg6 10. Bd3) 4. Nxc3 (4. Bc4 cxb2 5. Bxb2 Bb4+ (5... Nc6 6. Nf3 Bb4+ 7. Nc3 Nf6 8. O-O O-O 9. Nd5 Nxd5 10. exd5 Na5 11. Bd3) 6. Kf1 (6. Nd2 Nf6) 6... Nf6 7. e5 d5 8. Bb5+ c6) 4... Nc6 (4... Bc5 5. Bc4 d6 6. Nf3 (6. Qb3 Qe7 7. Nd5 Qxe4+ 8. Be3 Qxg2 (8... Bxe3 9. fxe3 Kd8)) 6... Nf6 7. e5) (4... Bb4 5. Bc4 Nf6 6. e5 (6. Bxf7+) 6... d5 7. exf6 dxc4 8. Qxd8+ Kxd8 9. fxg7 Rg8 10. Bg5+ Ke8 11. O-O-O) (4... d6 5. Bc4 Nf6 6. Qb3 Qe7 7. Bg5 c6) 5. Bc4 Nf6 6. Nf3 Bc5 (6... Bb4 7. e5 d5 8. exf6 dxc4 9. Qxd8+ Nxd8 10. fxg7 Rg8 11. Bh6) (6... d6 7. Ng5 Ne5 8. Bb3 h6 9. f4 hxg5 10. fxe5 dxe5 11. Bxf7+ Ke7 12. Qb3) 7. e5 Ng4 8. Bxf7+ Kxf7 9. Qd5+ *",
+    "youtube": "Nd7ZiSvdwN8",
     "color": "white"
   }
 }

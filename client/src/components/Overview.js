@@ -27,24 +27,24 @@ function Overview() {
     });
   }
   return (
-    <div id="main">
-      <div className="openings-container">
-        {allopenings.map((e) => {
-          const [key, o] = e;
-          return (
-            <div
-              className="opening"
-              key={key}
-              onClick={() => {
-                history.push("/opening/" + key);
-              }}
-            >
-              <div className="thumbnail" id={key}></div>
-              <div className="opening-title">{o.title}</div>
-            </div>
-          );
-        })}
-      </div>
+    <div id="main" className="openings-container">
+      <div className="overview-title">{overviewId.replace("-", " ")}</div>
+      <div className="divider"></div>
+      {allopenings.map((e) => {
+        const [key, o] = e;
+        return (
+          <div
+            className="opening"
+            key={key}
+            onClick={() => {
+              history.push("/opening/" + key);
+            }}
+          >
+            <div className="thumbnail" id={key}></div>
+            <div className="opening-title">{o.title}</div>
+          </div>
+        );
+      })}
     </div>
   );
 }

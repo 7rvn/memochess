@@ -3,18 +3,47 @@
   flex-wrap: wrap;
   align-content: flex-start;
   justify-content: center;
+  height: fit-content;
+  margin-top: -2rem;
 }
 
 .opening {
   cursor: pointer;
   height: fit-content;
   margin: 1rem 1rem;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  background-color: var(--blue);
+}
+
+.opening:hover > .opening-title {
+  background-color: var(--red);
+}
+
+.opening-title {
+  padding: 0.3em 0.5em;
+  font-size: 1.1em;
 }
 
 .thumbnail {
-  width: 23vw;
-  height: calc(23vw / (16 / 9));
+  width: 22vw;
+  height: calc(22vw / (16 / 9));
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+  background-origin: content-box;
+  padding: 0.5em;
+  padding-bottom: 0;
+}
+
+.overview-title {
+  width: 100%;
+  text-align: center;
+  font-size: 2em;
+  text-transform: capitalize;
+  margin-bottom: 0.2em;
+}
+
+.overview-title + div {
+  margin-bottom: 0.5em;
 }
