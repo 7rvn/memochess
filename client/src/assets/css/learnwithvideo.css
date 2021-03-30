@@ -14,7 +14,7 @@
 .video-container {
   margin: 0 auto;
   width: calc(35vh * (16 / 9));
-  height: 35vh;
+  min-height: 35vh;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;

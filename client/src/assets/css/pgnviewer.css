@@ -5,6 +5,9 @@
   padding: 0.7em;
   border-radius: var(--border-radius);
   transition: 0.1s filter linear;
+  line-height: 1.5rem;
+  font-size: 0.9em;
+  overflow-y: auto;
 }
 
 .pgn-move {
@@ -12,20 +15,40 @@
   border: none;
   text-align: center;
   color: white;
-  line-height: 1.5rem;
-  background-color: var(--blue);
+  padding: 0 0.2em;
+  cursor: pointer;
+}
+
+.pgn-move-number,
+.pgn-move-variation-end {
+  display: inline-block;
+  color: grey;
+  margin-right: 0.2em;
+}
+
+.pgn-move-text {
+  display: inline-block;
 }
 
 .pgn-move:hover {
   background-color: var(--red);
 }
 
-.current-move,
-.current-move:hover {
+.current,
+.current:hover {
   background-color: var(--red);
 }
 
 .last-move,
 .lastmove:hover {
   background-color: var(--red);
+}
+
+.variation {
+  background-color: rgba(0, 0, 0, 0.3);
+  margin: 0.3em 0;
+}
+
+.pgn-move-variation-end {
+  margin-left: -0.2em;
 }

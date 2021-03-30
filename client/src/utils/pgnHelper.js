@@ -1,88 +1,107 @@
 import { Node } from "./tree";
 
 export function constructPgnTree(pgn) {
-  let nodeId = 0;
+  // split by number + dots
   const pgn_processed = pgn
     .replace(/}\)/g, "} )")
-    .split(/\d+\.(?![^{]*})(?![^{]*})/);
+    .replace(/(\d+\.+(?![^{]*})(?![^{]*}))/g, function (match) {
+      return "DELIM_SPXI_777" + match;
+    })
+    .split("DELIM_SPXI_777");
 
   let root = new Node(null);
   let prevNode = root;
-  let klammerauf = false;
-  let klammerzu = false;
-  let dotdot = false;
-  let roots = [];
+  let nodeId = 0;
+  let variationStart = false;
+  let variationEnd = false;
+  let whiteRoots = [];
 
-  // for each string starting with n.
-  pgn_processed.forEach((e) => {
-    const letter = /[a-zA-Z]/;
+  pgn_processed.slice(1).forEach((e) => {
+    console.log(e);
 
-    // for each split by whitespace
+    let moveNo;
+    let moveColor = 1;
+    // split by white space
     e.split(/\s+(?![^{]*})(?![^{]*})/).forEach((s) => {
-      //console.log(s);
-      if (!s.includes("{")) {
-        //console.log("handle:", s);
-        let newNode = null;
-        // if its a black move continunig after white move
-        if (s.includes("..")) {
-          dotdot = true;
-        }
-
-        // if its a move
-        if (letter.test(s)) {
-          const move = s.replace(/\)|\(|\.|\s/, "");
-
-          newNode = new Node(move);
-          newNode.id = nodeId;
-          nodeId++;
-
-          // if starts variation
-          if (klammerauf) {
-            let localroot = roots[roots.length - 1];
-
-            if (dotdot) {
-              //console.log(move, "variation bei:", prevNode.parent.move);
-              localroot.parent.addVariation(newNode);
-              dotdot = false;
-            } else {
-              //console.log(move, "variation bei:", prevNode.parent.move);
-              localroot.parent.addVariation(newNode);
-            }
-            klammerauf = false;
-
-            // if not immediately after start of variation
-          } else {
-            if (dotdot) {
-              if (klammerzu) {
-                prevNode.addChild(newNode);
-                klammerzu = false;
-              } else {
-                roots[roots.length - 1].addChild(newNode);
-                //console.log(move, "after:", roots[roots.length - 1].move);
-              }
-              dotdot = false;
-            } else {
-              //console.log(move, "after:", prevNode.move);
-              prevNode.addChild(newNode);
-            }
+      // if not empty
+      if (/\S/.test(s)) {
+        // if number + dots
+        if (/^\d+\.+$/.test(s)) {
+          moveNo = s.match(/\d+/)[0];
+          if (s.includes("..")) {
+            moveColor = 2;
           }
 
-          prevNode = newNode;
-        }
+          // if comment
+        } else if (s.includes("{")) {
+          // console.log("comment:", s);
+        } else {
+          // if s contains move (tested by checking for number)
+          if (/\d/.test(s)) {
+            const newNode = new Node(s.replace(")", "").replace("(", ""));
+            nodeId++;
+            newNode.id = nodeId;
+            newNode.color = moveColor;
+            newNode.moveNumber = moveNo;
+            const moveColorVerbose = moveColor === 1 ? "white" : "black";
+            console.log(moveNo + ".", moveColorVerbose, s);
+            moveColor++;
 
-        if (s.includes("(")) {
-          roots.push(prevNode);
-          klammerauf = true;
-        }
+            if (variationStart) {
+              if (!variationEnd) {
+                // console.log(
+                //   "adding root prevNode:",
+                //   prevNode,
+                //   "newNode:",
+                //   newNode
+                // );
+                if (prevNode.color === 1) {
+                  whiteRoots.push(prevNode);
+                } else {
+                  whiteRoots.push(prevNode.parent);
+                }
+              } else {
+                variationEnd = false;
+              }
 
-        if (s.includes(")")) {
-          prevNode = roots.pop();
-          klammerzu = true;
+              if (newNode.color === 2) {
+                whiteRoots[whiteRoots.length - 1].addVariation(newNode);
+              } else {
+                whiteRoots[whiteRoots.length - 1].parent.addVariation(newNode);
+              }
+              console.log("varitaion start");
+              variationStart = false;
+            }
+
+            // if only variation end, no new start
+            else if (variationEnd) {
+              const whiteRoot = whiteRoots.pop();
+              console.log("white root is:", whiteRoot);
+              if (newNode.color === 1) {
+                whiteRoot.nextMove.addChild(newNode);
+              } else {
+                whiteRoot.addChild(newNode);
+              }
+
+              console.log("varitaion end");
+              variationEnd = false;
+            } else {
+              prevNode.addChild(newNode);
+            }
+
+            prevNode = newNode;
+          }
+
+          if (s.includes("(")) {
+            variationStart = true;
+          }
+          if (s.includes(")")) {
+            variationEnd = true;
+          }
         }
-      } else {
-        prevNode.comment = s.replace("{", "").replace("}", "");
       }
     });
+    console.log("-----------------------------------------");
   });
   // console.log(root);
   return root;
