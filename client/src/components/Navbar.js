@@ -32,7 +32,11 @@ function Navbar() {
       </NavLink>
       <div className="nav-subtitle">PGN only</div>
       <div className="divider"></div>
-      <NavLink to="/custom" activeClassName="selected" className="nl nav-link">
+      <NavLink
+        to="/custom-pgn"
+        activeClassName="selected"
+        className="nl nav-link"
+      >
         import PGN
       </NavLink>
     </div>
