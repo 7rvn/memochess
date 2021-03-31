@@ -37,3 +37,10 @@
 #pgn-form input[type="radio"]:checked + label {
   background-color: var(--red);
 }
+
+.opening-title {
+  margin-bottom: 0.3em;
+  font-size: 2.5em;
+  text-align: center;
+  font-weight: bold;
+}

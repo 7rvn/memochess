@@ -233,8 +233,6 @@ body {
     flex-grow: 0;
     padding: 0.1em 0.1em;
     margin: 0.2em;
-    border: 0.2em solid var(--red);
-    border-radius: var(--border-radius);
   }
 
   #mobile-title {
@@ -298,9 +296,17 @@ body {
 
   #pgn-buttons {
     order: 1;
+    display: flex;
   }
 
   #pgn-viewer {
     order: 3;
+  }
+
+  .video-container {
+    display: none;
+  }
+  #yt-link-mobile {
+    display: inline-block !important;
   }
 }

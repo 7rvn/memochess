@@ -130,7 +130,7 @@ function CustomPgn() {
       boardRef: boardRef,
     });
   }
-  console.log("inputpgn:", inputPgn);
+
   return (
     <div id="main">
       <MobileNav title={inputPgn?.title || "Import PGN"}></MobileNav>

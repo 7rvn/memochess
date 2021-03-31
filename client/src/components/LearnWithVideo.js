@@ -1,181 +1,105 @@
 import * as React from "react";
 import { useParams } from "react-router-dom";
 
+import "../assets/css/custompgn.css";
+import "../assets/css/learnwithvideo.css";
+import openings from "../assets/data/youtube.json";
+
 import Chess from "chess.js";
 
-import { playSound } from "../chessboard/src/utils/utils";
-import { constructPgnTree, getGoodMoves } from "../utils/pgnHelper";
-import { algToHex, hexToSan } from "../utils/helper";
+import { constructPgnTree } from "../utils/pgnHelper";
+
+import {
+  handleActivatingPiece,
+  handleMove,
+  opponentMoves,
+  restartLine,
+  goToNode,
+} from "../components/LearnPgn";
 
 import Board from "../chessboard/src/components/Board";
 import PgnViewer from "../components/PgnViewer";
-
-import openings from "../assets/data/youtube.json";
-import "../assets/css/learnwithvideo.css";
+import MobileNav from "../components/MobileNav";
 
 function LearnWithVideo() {
   const routerParams = useParams();
   const openingId = routerParams.id;
 
   const opening = openings[openingId];
-  /* States */
-  /* ************ */
+
   function initialTree() {
     return constructPgnTree(opening.pgn);
   }
   const [game, setGame] = React.useState(new Chess());
   const [currentNode, setCurrentNode] = React.useState(initialTree);
+  const [rootNode] = React.useState(initialTree);
   const [pgnVisible, setPgnVisible] = React.useState(true);
 
-  /* Refs & Derived State */
-  /* ************ */
   const boardRef = React.useRef();
 
-  function handleMove(hexmove) {
-    const move = game.move({
-      from: hexToSan(hexmove.from.rank, hexmove.from.file),
-      to: hexToSan(hexmove.to.rank, hexmove.to.file),
-    });
-
-    boardRef.current.setBoard(game.board());
-
-    if (move) {
-      move.flags = move.san.includes("+") ? move.flags + "+" : move.flags;
-      playSound(move.flags);
-
-      if (currentNode.nextMove) {
-        const goodMoves = getGoodMoves(currentNode);
-        const node = goodMoves.find((e) => e.move === move.san);
-        const moveRecommended = node ? true : false;
-
-        if (moveRecommended) {
-          setGame(game);
-          setCurrentNode(node);
-
-          boardRef.current.addHighlights({
-            squares: [hexmove.from, hexmove.to],
-            type: "lastMove",
-          });
-        } else {
-          boardRef.current.addHighlights({
-            squares: [hexmove.from, hexmove.to],
-            type: "wrongMove",
-          });
-          setTimeout(() => {
-            game.undo();
-            boardRef.current.setBoard(game.board());
-            boardRef.current.addHighlights({
-              squares: [],
-              type: "wrongMove",
-            });
-          }, 777);
-        }
-      } else {
-        boardRef.current.addHighlights({
-          squares: [hexmove.from, hexmove.to],
-          type: "lastMove",
-        });
-      }
-    } else {
-      const sanTo = hexToSan(hexmove.to.rank, hexmove.to.file);
-      // if clicked own piece
-      if (game.turn() === game.get(sanTo)?.color) {
-        return "samecolor";
-      }
-    }
-  }
-
-  function handleActivatingPiece({ rank, file }) {
-    const sanFrom = hexToSan(rank, file);
-    const isTurn = game.turn() === game.get(sanFrom)?.color;
-
-    if (!isTurn) {
-      return false;
-    }
-
-    const out = game.moves({ verbose: true, square: sanFrom }).map((m) => {
-      const hex = algToHex(m.to);
-      const type =
-        m.flags.includes("c") || m.flags.includes("e")
-          ? "capture-hint"
-          : "hint";
-      return { rank: hex[0], file: hex[1], type: type };
-    });
-
-    boardRef.current.addHighlights({
-      squares: out,
-      type: "legalMoves",
+  function moveHandler(hexmove) {
+    return handleMove({
+      game: game,
+      setGame: setGame,
+      currentNode: currentNode,
+      setCurrentNode: setCurrentNode,
+      boardRef: boardRef,
+      hexmove: hexmove,
     });
   }
 
-  function goToNode(node) {
-    let path = [];
-    const endNode = node;
-
-    while (node.move) {
-      path.push(node.move);
-      node = node.parent;
-    }
-    const newGame = new Chess();
-    while (path.length) {
-      newGame.move(path.pop());
-    }
-    setGame(newGame);
-    setCurrentNode(endNode);
-    boardRef.current.setBoard(newGame.board());
+  function activateHandler({ rank, file }) {
+    return handleActivatingPiece({
+      game: game,
+      boardRef: boardRef,
+      rank: rank,
+      file: file,
+    });
   }
 
-  function restartLine() {
-    let node = currentNode;
-    while (node.parent) {
-      node = node.parent;
-    }
-    setCurrentNode(node);
-    const newGame = new Chess();
-    setGame(newGame);
-    boardRef.current.setBoard(newGame.board());
-    boardRef.current.addHighlights({ squares: [], type: "lastMove" });
-  }
+  React.useEffect(() => {
+    opponentMoves({
+      currentNode: currentNode,
+      setCurrentNode: setCurrentNode,
+      game: game,
+      setGame: setGame,
+      boardRef: boardRef,
+      color: opening.color,
+    });
+  }, [currentNode, game, opening]);
 
   function togglePgn() {
     setPgnVisible(pgnVisible ? false : true);
   }
 
-  React.useEffect(() => {
-    if (currentNode.nextMove === null) {
-      return;
-    }
-    if (game.turn() !== opening.color[0]) {
-      const goodMoves = getGoodMoves(currentNode);
-      const node = goodMoves[Math.floor(Math.random() * goodMoves.length)];
+  function restartHandler() {
+    return restartLine({
+      currentNode: currentNode,
+      setCurrentNode: setCurrentNode,
+      newGame: new Chess(),
+      setGame: setGame,
+      boardRef: boardRef,
+    });
+  }
 
-      setTimeout(() => {
-        const move = game.move(node.move);
-        move.flags = move.san.includes("+") ? move.flags + "+" : move.flags;
-        playSound(move.flags);
-        setCurrentNode(node);
-        setGame(game);
-        boardRef.current.setBoard(game.board());
-        const hexFrom = algToHex(move.from);
-        const hexTo = algToHex(move.to);
-        boardRef.current.addHighlights({
-          squares: [
-            { rank: hexFrom[0], file: hexFrom[1] },
-            { rank: hexTo[0], file: hexTo[1] },
-          ],
-          type: "lastMove",
-        });
-      }, 777);
-    }
-  }, [game, opening, currentNode]);
+  function goToNodeHandler(node) {
+    return goToNode({
+      node: node,
+      newGame: new Chess(),
+      setGame: setGame,
+      setCurrentNode: setCurrentNode,
+      boardRef: boardRef,
+    });
+  }
 
   return (
     <div id="main">
+      <MobileNav title={opening.title}></MobileNav>
       <div id="appgame">
         <Board
           ref={boardRef}
-          onMakeMove={handleMove}
-          onActivatePiece={handleActivatingPiece}
+          onMakeMove={moveHandler}
+          onActivatePiece={activateHandler}
           initialOrientation={opening.color}
           colors={{
             darksquares: "var(--square)",
@@ -197,32 +121,45 @@ function LearnWithVideo() {
           ></iframe>
         </div>
 
-        <div id={"opening-title"}>{opening.title}</div>
-
-        <div id="sidebox-buttons">
-          <button
-            className={
-              currentNode.nextMove
-                ? "action-button"
-                : "action-button accent-alt"
-            }
-            onClick={restartLine}
-          >
-            restart
-          </button>
-          <button className="action-button" onClick={togglePgn}>
-            {pgnVisible ? "hide PGN" : "show PGN"}
-          </button>
+        <div className={"opening-title"} id="pgn-title">
+          {opening.title}
         </div>
+
         <PgnViewer
-          tree={currentNode}
+          tree={rootNode}
           currentNode={currentNode}
-          goToNode={goToNode}
+          goToNode={goToNodeHandler}
           style={{
             filter: pgnVisible ? "blur(0)" : "blur(0.2em)",
             pointerEvents: pgnVisible ? "auto" : "none",
           }}
+          id="pgn-viewer"
         ></PgnViewer>
+        <div className="sidebox-buttons" id="pgn-buttons">
+          <button
+            className={
+              currentNode && currentNode.nextMove
+                ? "action-button"
+                : "action-button underline-primary blink"
+            }
+            onClick={restartHandler}
+          >
+            Restart
+          </button>
+          <button className="action-button" onClick={togglePgn}>
+            {pgnVisible ? "Hide PGN" : "Show PGN"}
+          </button>
+          <button
+            id="yt-link-mobile"
+            style={{ display: "none" }}
+            className="action-button"
+            onClick={() => {
+              window.open("https://www.youtube.com/watch?v=" + opening.youtube);
+            }}
+          >
+            Youtube Video
+          </button>
+        </div>
       </div>
     </div>
   );
