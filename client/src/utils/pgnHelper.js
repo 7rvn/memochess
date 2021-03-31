@@ -37,7 +37,7 @@ export function constructPgnTree(pgn) {
           // console.log("comment:", s);
         } else {
           // if s contains move (tested by checking for number)
-          if (/\d/.test(s)) {
+          if (/\w/.test(s)) {
             const newNode = new Node(s.replace(")", "").replace("(", ""));
             nodeId++;
             newNode.id = nodeId;
@@ -55,7 +55,12 @@ export function constructPgnTree(pgn) {
               }
               variationStart = false;
             } else {
-              prevNode.addChild(newNode);
+              // because end variation returns white root
+              if (prevNode.color === newNode.color) {
+                prevNode.nextMove.addChild(newNode);
+              } else {
+                prevNode.addChild(newNode);
+              }
             }
 
             prevNode = newNode;
