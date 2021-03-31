@@ -20,7 +20,6 @@ function PgnViewer({ tree, currentNode, goToNode, style }) {
   }
 
   function constructPgnDivs(node, layer) {
-    console.log("construct layer:", layer, node);
     let variationStart = layer > 0 ? true : false;
     let variation = [];
     let newVariation = [];

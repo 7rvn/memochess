@@ -15,6 +15,7 @@ import {
 
 import Board from "../chessboard/src/components/Board";
 import PgnViewer from "../components/PgnViewer";
+import MobileNav from "../components/MobileNav";
 
 function CustomPgn() {
   function initialTree() {
@@ -46,14 +47,16 @@ function CustomPgn() {
   const boardRef = React.useRef();
 
   function moveHandler(hexmove) {
-    return handleMove({
-      game: game,
-      setGame: setGame,
-      currentNode: currentNode,
-      setCurrentNode: setCurrentNode,
-      boardRef: boardRef,
-      hexmove: hexmove,
-    });
+    if (inputPgn) {
+      return handleMove({
+        game: game,
+        setGame: setGame,
+        currentNode: currentNode,
+        setCurrentNode: setCurrentNode,
+        boardRef: boardRef,
+        hexmove: hexmove,
+      });
+    }
   }
 
   function activateHandler({ rank, file }) {
@@ -80,7 +83,9 @@ function CustomPgn() {
   }, [currentNode, game, inputPgn]);
 
   React.useEffect(() => {
-    window.localStorage.setItem("inputPgn", JSON.stringify(inputPgn));
+    if (inputPgn) {
+      window.localStorage.setItem("inputPgn", JSON.stringify(inputPgn));
+    }
   }, [inputPgn]);
 
   function togglePgn() {
@@ -128,6 +133,7 @@ function CustomPgn() {
   console.log("inputpgn:", inputPgn);
   return (
     <div id="main">
+      <MobileNav title={inputPgn?.title || "Import PGN"}></MobileNav>
       <div id="appgame">
         <Board
           ref={boardRef}
@@ -147,8 +153,9 @@ function CustomPgn() {
           style={{
             display: inputPgn?.title && !inputVisible ? "block" : "none",
           }}
+          id="pgn-title"
         >
-          {inputPgn.title}
+          {inputPgn?.title}
         </div>
 
         <div
@@ -241,10 +248,12 @@ function CustomPgn() {
             filter: pgnVisible ? "blur(0)" : "blur(0.2em)",
             pointerEvents: pgnVisible ? "auto" : "none",
           }}
+          id="pgn-viewer"
         ></PgnViewer>
         <div
           className="sidebox-buttons"
-          style={{ display: inputVisible ? "none" : "block" }}
+          style={{ display: inputVisible ? "none" : "inherit" }}
+          id="pgn-buttons"
         >
           <button
             className={
