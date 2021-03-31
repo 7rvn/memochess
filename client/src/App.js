@@ -8,6 +8,7 @@ import CustomPgn from "./components/CustomPgn";
 
 import "./App.css";
 import "./assets/css/youtube.css";
+import LandingPage from "./components/LandingPage";
 
 function App() {
   return (
@@ -18,7 +19,7 @@ function App() {
         <Route path="/overview/:id" component={Overview}></Route>
         <Route path="/all-openings" component={Overview}></Route>
         <Route path="/custom-pgn" component={CustomPgn}></Route>
-        <Route path="/*" component={Overview}></Route>
+        <Route path="/*" component={LandingPage}></Route>
       </Switch>
     </Router>
   );

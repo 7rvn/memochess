@@ -25,6 +25,9 @@ function Overview() {
     allopenings = Object.entries(openings).filter(function (o) {
       return o[1].author === overviewId;
     });
+    if (allopenings.length === 0) {
+      history.push("/");
+    }
   }
   return (
     <div id="main" className="openings-container">
