@@ -12,8 +12,8 @@ export function constructPgnTree(pgn) {
   let root = new Node(null);
   let prevNode = root;
   let nodeId = 0;
-  let variationStart = false;
   let variationEnd = false;
+  let variationStart = false;
   let whiteRoots = [];
 
   pgn_processed.slice(1).forEach((e) => {
@@ -48,43 +48,12 @@ export function constructPgnTree(pgn) {
             moveColor++;
 
             if (variationStart) {
-              if (!variationEnd) {
-                // console.log(
-                //   "adding root prevNode:",
-                //   prevNode,
-                //   "newNode:",
-                //   newNode
-                // );
-                if (prevNode.color === 1) {
-                  whiteRoots.push(prevNode);
-                } else {
-                  whiteRoots.push(prevNode.parent);
-                }
-              } else {
-                variationEnd = false;
-              }
-
               if (newNode.color === 2) {
                 whiteRoots[whiteRoots.length - 1].addVariation(newNode);
               } else {
                 whiteRoots[whiteRoots.length - 1].parent.addVariation(newNode);
               }
-              console.log("varitaion start");
               variationStart = false;
-            }
-
-            // if only variation end, no new start
-            else if (variationEnd) {
-              const whiteRoot = whiteRoots.pop();
-              console.log("white root is:", whiteRoot);
-              if (newNode.color === 1) {
-                whiteRoot.nextMove.addChild(newNode);
-              } else {
-                whiteRoot.addChild(newNode);
-              }
-
-              console.log("varitaion end");
-              variationEnd = false;
             } else {
               prevNode.addChild(newNode);
             }
@@ -92,11 +61,24 @@ export function constructPgnTree(pgn) {
             prevNode = newNode;
           }
 
+          // variation end
+          if (s.includes(")")) {
+            var count = (s.match(/\)/g) || []).length;
+            console.log("over:", count);
+            let i = 0;
+            while (i < count) {
+              prevNode = whiteRoots.pop();
+              i++;
+            }
+          }
+          // variation start
           if (s.includes("(")) {
             variationStart = true;
-          }
-          if (s.includes(")")) {
-            variationEnd = true;
+            if (prevNode.color === 1) {
+              whiteRoots.push(prevNode);
+            } else {
+              whiteRoots.push(prevNode.parent);
+            }
           }
         }
       }

@@ -20,10 +20,11 @@ function LearnWithVideo() {
   const opening = openings[openingId];
   /* States */
   /* ************ */
+  function initialTree() {
+    return constructPgnTree(opening.pgn);
+  }
   const [game, setGame] = React.useState(new Chess());
-  const [currentNode, setCurrentNode] = React.useState(
-    constructPgnTree(opening.pgn)
-  );
+  const [currentNode, setCurrentNode] = React.useState(initialTree);
   const [pgnVisible, setPgnVisible] = React.useState(true);
 
   /* Refs & Derived State */
@@ -169,61 +170,59 @@ function LearnWithVideo() {
   }, [game, opening, currentNode]);
 
   return (
-    <div style={{ display: "flex", width: "100%" }}>
-      <div id="main">
-        <div id="appgame">
-          <Board
-            ref={boardRef}
-            onMakeMove={handleMove}
-            onActivatePiece={handleActivatingPiece}
-            initialOrientation={opening.color}
-            colors={{
-              darksquares: "var(--square)",
-              highlight: "var(--square-alt)",
-              wrong: "var(--red)",
-            }}
-          ></Board>
+    <div id="main">
+      <div id="appgame">
+        <Board
+          ref={boardRef}
+          onMakeMove={handleMove}
+          onActivatePiece={handleActivatingPiece}
+          initialOrientation={opening.color}
+          colors={{
+            darksquares: "var(--square)",
+            highlight: "var(--square-alt)",
+            wrong: "var(--red)",
+          }}
+        ></Board>
+      </div>
+
+      <div className="flex-column" id="sidebox">
+        <div className="video-container" id={openingId}>
+          <iframe
+            id="yt-player"
+            src={"https://www.youtube.com/embed/" + opening.youtube}
+            title="YouTube video player"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          ></iframe>
         </div>
 
-        <div className="flex-column" id="sidebox">
-          <div className="video-container" id={openingId}>
-            <iframe
-              id="yt-player"
-              src={"https://www.youtube.com/embed/" + opening.youtube}
-              title="YouTube video player"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            ></iframe>
-          </div>
+        <div id={"opening-title"}>{opening.title}</div>
 
-          <div id={"opening-title"}>{opening.title}</div>
-
-          <div id="sidebox-buttons">
-            <button
-              className={
-                currentNode.nextMove
-                  ? "action-button"
-                  : "action-button accent-alt"
-              }
-              onClick={restartLine}
-            >
-              restart
-            </button>
-            <button className="action-button" onClick={togglePgn}>
-              {pgnVisible ? "hide PGN" : "show PGN"}
-            </button>
-          </div>
-          <PgnViewer
-            tree={currentNode}
-            currentNode={currentNode}
-            goToNode={goToNode}
-            style={{
-              filter: pgnVisible ? "blur(0)" : "blur(0.2em)",
-              pointerEvents: pgnVisible ? "auto" : "none",
-            }}
-          ></PgnViewer>
+        <div id="sidebox-buttons">
+          <button
+            className={
+              currentNode.nextMove
+                ? "action-button"
+                : "action-button accent-alt"
+            }
+            onClick={restartLine}
+          >
+            restart
+          </button>
+          <button className="action-button" onClick={togglePgn}>
+            {pgnVisible ? "hide PGN" : "show PGN"}
+          </button>
         </div>
+        <PgnViewer
+          tree={currentNode}
+          currentNode={currentNode}
+          goToNode={goToNode}
+          style={{
+            filter: pgnVisible ? "blur(0)" : "blur(0.2em)",
+            pointerEvents: pgnVisible ? "auto" : "none",
+          }}
+        ></PgnViewer>
       </div>
     </div>
   );

@@ -151,3 +151,34 @@ body {
 .selected {
   background-color: var(--red);
 }
+
+@media only screen and (max-width: 800px) {
+  .navbar {
+    display: none;
+  }
+
+  #main {
+    padding: 0;
+    flex-direction: column;
+  }
+
+  .board-layout,
+  #board-board {
+    width: 90vw !important;
+    height: 90vw !important;
+    padding: 0;
+    margin: 0 auto 0 auto;
+  }
+
+  .board-layout {
+    margin-top: 5vw;
+  }
+
+  .resizer {
+    display: none;
+  }
+
+  #sidebox {
+    display: none;
+  }
+}
