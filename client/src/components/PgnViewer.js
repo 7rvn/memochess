@@ -95,7 +95,7 @@ function PgnViewer({ tree, currentNode, goToNode, style }) {
 
   const variations = constructPgnDivs(pgntree, 0);
   return (
-    <div id="pgn-viewer" style={style}>
+    <div className="sidebox-container" style={style}>
       <div className="divider"></div>
       {variations}
       <div className="divider"></div>

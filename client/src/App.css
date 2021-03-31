@@ -59,8 +59,20 @@ body {
   max-width: 40vw;
 }
 
-#sidebox-buttons {
+.sidebox-buttons {
   margin-bottom: 1em;
+}
+
+.sidebox-container {
+  width: 100%;
+  background-color: var(--blue);
+  margin-bottom: 1rem;
+  padding: 0.7em;
+  border-radius: var(--border-radius);
+  transition: 0.1s filter linear;
+  line-height: 1.5rem;
+  font-size: 0.9em;
+  overflow-y: auto;
 }
 
 .navbar {
@@ -129,18 +141,27 @@ body {
   flex-direction: column;
 }
 
-.action-button {
+.action-button,
+.action-button-alt {
   display: inline-block;
   width: fit-content;
   background-color: var(--blue);
   border-radius: var(--border-radius);
   color: #fff;
-  margin: 0.3em;
+  margin-right: 0.6em;
   padding: 0.3em 1.5em;
   font-size: 1em;
+  cursor: pointer;
 }
 
 .action-button:hover {
+  background-color: var(--red);
+}
+.action-button-alt {
+  background-color: var(--blue-light);
+}
+
+.action-button-alt:hover {
   background-color: var(--red);
 }
 

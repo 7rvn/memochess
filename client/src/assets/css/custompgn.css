@@ -1,0 +1,39 @@
+#pgn-form {
+  margin: 1em auto;
+  width: 95%;
+}
+
+.input-label {
+  margin: 0.5em 0;
+  font-size: 1.2em;
+  display: block;
+}
+
+#pgn-input,
+#title-input {
+  width: 100%;
+  padding: 0.5em;
+  border: 0;
+  outline: none;
+  box-sizing: border-box;
+  resize: none;
+  margin: 1em 0;
+  border-radius: var(--border-radius);
+}
+#pgn-input {
+  height: 20em;
+}
+
+#title-input {
+  font-size: 1.1em;
+}
+
+#pgn-form input[type="radio"] {
+  opacity: 0;
+  position: fixed;
+  width: 0;
+}
+
+#pgn-form input[type="radio"]:checked + label {
+  background-color: var(--red);
+}
