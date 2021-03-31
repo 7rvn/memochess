@@ -2,7 +2,6 @@ import * as React from "react";
 import "../assets/css/pgnviewer.css";
 
 function PgnViewer({ tree, currentNode, goToNode, style }) {
-  console.log("currentNode:", currentNode);
   function PGNMove({ status, node, moveNumber, moveText }) {
     return (
       <div className={"pgn-move" + status}>

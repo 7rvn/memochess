@@ -5,7 +5,7 @@ export function constructPgnTree(pgn) {
   const pgn_processed = pgn
     .replace(/}\)/g, "} )")
     .replace(/(\d+\.+(?![^{]*})(?![^{]*}))/g, function (match) {
-      return "DELIM_SPXI_777" + match;
+      return "DELIM_SPXI_777" + match + " ";
     })
     .split("DELIM_SPXI_777");
 
@@ -54,6 +54,7 @@ export function constructPgnTree(pgn) {
               }
               variationStart = false;
             } else {
+              //console.log("p:", prevNode, "n:", newNode);
               // because end variation returns white root
               if (prevNode.color === newNode.color) {
                 prevNode.nextMove.addChild(newNode);
