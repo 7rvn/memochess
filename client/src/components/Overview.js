@@ -28,7 +28,9 @@ function Overview() {
   }
   return (
     <div id="main" className="openings-container">
-      <div className="overview-title">{overviewId.replace("-", " ")}</div>
+      <div className="overview-title-overview">
+        {overviewId.replace("-", " ")}
+      </div>
       <div className="divider"></div>
       {allopenings.map((e) => {
         const [key, o] = e;

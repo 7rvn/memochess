@@ -12,12 +12,11 @@ export function constructPgnTree(pgn) {
   let root = new Node(null);
   let prevNode = root;
   let nodeId = 0;
-  let variationEnd = false;
   let variationStart = false;
   let whiteRoots = [];
 
   pgn_processed.slice(1).forEach((e) => {
-    console.log(e);
+    //console.log(e);
 
     let moveNo;
     let moveColor = 1;
@@ -43,8 +42,8 @@ export function constructPgnTree(pgn) {
             newNode.id = nodeId;
             newNode.color = moveColor;
             newNode.moveNumber = moveNo;
-            const moveColorVerbose = moveColor === 1 ? "white" : "black";
-            console.log(moveNo + ".", moveColorVerbose, s);
+            //const moveColorVerbose = moveColor === 1 ? "white" : "black";
+            //console.log(moveNo + ".", moveColorVerbose, s);
             moveColor++;
 
             if (variationStart) {
@@ -69,7 +68,7 @@ export function constructPgnTree(pgn) {
           // variation end
           if (s.includes(")")) {
             var count = (s.match(/\)/g) || []).length;
-            console.log("over:", count);
+            //console.log("over:", count);
             let i = 0;
             while (i < count) {
               prevNode = whiteRoots.pop();
@@ -88,7 +87,7 @@ export function constructPgnTree(pgn) {
         }
       }
     });
-    console.log("-----------------------------------------");
+    //console.log("-----------------------------------------");
   });
   // console.log(root);
   return root;

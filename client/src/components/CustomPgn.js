@@ -16,19 +16,32 @@ import {
 import Board from "../chessboard/src/components/Board";
 import PgnViewer from "../components/PgnViewer";
 
-import openings from "../assets/data/youtube.json";
-
 function CustomPgn() {
-  const pgn = openings["teste4"].pgn;
-  const color = "white";
   function initialTree() {
-    return constructPgnTree(pgn);
+    const localStorageValue = window.localStorage.getItem("inputPgn");
+    if (localStorageValue !== "null" && localStorageValue !== null) {
+      return constructPgnTree(JSON.parse(localStorageValue).pgn);
+    } else {
+      return null;
+    }
+  }
+
+  function initialInput() {
+    const localStorageValue = window.localStorage.getItem("inputPgn");
+    if (localStorageValue !== "null" && localStorageValue !== null) {
+      return JSON.parse(localStorageValue);
+    } else {
+      return null;
+    }
   }
   const [game, setGame] = React.useState(new Chess());
   const [currentNode, setCurrentNode] = React.useState(initialTree);
+  const [rootNode, setRootNode] = React.useState(initialTree);
   const [pgnVisible, setPgnVisible] = React.useState(true);
-  const [inputPgn, setInputPgn] = React.useState();
-  const [inputVisible, setInputVisible] = React.useState(false);
+  const [inputPgn, setInputPgn] = React.useState(initialInput);
+  const [inputVisible, setInputVisible] = React.useState(
+    inputPgn ? false : true
+  );
 
   const boardRef = React.useRef();
 
@@ -53,15 +66,22 @@ function CustomPgn() {
   }
 
   React.useEffect(() => {
+    if (!inputPgn) {
+      return;
+    }
     opponentMoves({
       currentNode: currentNode,
       setCurrentNode: setCurrentNode,
       game: game,
       setGame: setGame,
       boardRef: boardRef,
-      color: color,
+      color: inputPgn.color,
     });
-  }, [currentNode, game]);
+  }, [currentNode, game, inputPgn]);
+
+  React.useEffect(() => {
+    window.localStorage.setItem("inputPgn", JSON.stringify(inputPgn));
+  }, [inputPgn]);
 
   function togglePgn() {
     setPgnVisible(pgnVisible ? false : true);
@@ -73,7 +93,17 @@ function CustomPgn() {
 
   function submitPgn(e) {
     e.preventDefault();
-    console.log(e.target.title.value, e.target.color.value, e.target.pgn.value);
+
+    const pgn = e.target.pgn.value;
+    const title = e.target.title.value || "";
+    const color = e.target.color.value;
+    if (pgn) {
+      setInputPgn({ pgn: pgn, title: title, color: color });
+      const node = constructPgnTree(pgn);
+      setCurrentNode(node);
+      setRootNode(node);
+      toggleInputPgn();
+    }
   }
 
   function restartHandler() {
@@ -95,7 +125,7 @@ function CustomPgn() {
       boardRef: boardRef,
     });
   }
-
+  console.log("inputpgn:", inputPgn);
   return (
     <div id="main">
       <div id="appgame">
@@ -103,7 +133,7 @@ function CustomPgn() {
           ref={boardRef}
           onMakeMove={moveHandler}
           onActivatePiece={activateHandler}
-          initialOrientation={color}
+          initialOrientation={inputPgn?.color || "white"}
           colors={{
             darksquares: "var(--square)",
             highlight: "var(--square-alt)",
@@ -113,35 +143,19 @@ function CustomPgn() {
       </div>
       <div className="flex-column" id="sidebox">
         <div
-          className="sidebox-buttons"
-          style={{ display: inputVisible ? "none" : "block" }}
+          className={"opening-title"}
+          style={{
+            display: inputPgn?.title && !inputVisible ? "block" : "none",
+          }}
         >
-          <button
-            className={
-              currentNode.nextMove
-                ? "action-button"
-                : "action-button accent-alt"
-            }
-            onClick={restartHandler}
-          >
-            Restart
-          </button>
-          <button className="action-button" onClick={togglePgn}>
-            {pgnVisible ? "Hide PGN" : "Show PGN"}
-          </button>
-          <button
-            className="action-button"
-            onClick={toggleInputPgn}
-            style={{ display: inputPgn ? "none" : "inline-block" }}
-          >
-            Load PGN
-          </button>
+          {inputPgn.title}
         </div>
 
         <div
           id="inputView"
           style={{ display: inputVisible ? "block" : "none" }}
         >
+          <div className={"opening-title"}>import PGN</div>
           <div className="sidebox-container">
             <div className="divider"></div>
 
@@ -212,13 +226,14 @@ function CustomPgn() {
               type="submit"
               className="action-button"
               onClick={toggleInputPgn}
+              style={{ display: inputPgn ? "inline-block" : "none" }}
             >
               Cancel
             </button>
           </div>
         </div>
         <PgnViewer
-          tree={currentNode}
+          tree={rootNode}
           currentNode={currentNode}
           goToNode={goToNodeHandler}
           style={{
@@ -227,6 +242,31 @@ function CustomPgn() {
             pointerEvents: pgnVisible ? "auto" : "none",
           }}
         ></PgnViewer>
+        <div
+          className="sidebox-buttons"
+          style={{ display: inputVisible ? "none" : "block" }}
+        >
+          <button
+            className={
+              currentNode && currentNode.nextMove
+                ? "action-button"
+                : "action-button underline-primary blink"
+            }
+            onClick={restartHandler}
+          >
+            Restart
+          </button>
+          <button className="action-button" onClick={togglePgn}>
+            {pgnVisible ? "Hide PGN" : "Show PGN"}
+          </button>
+          <button
+            className="action-button"
+            onClick={toggleInputPgn}
+            style={{ display: inputPgn ? "inline-block" : "none" }}
+          >
+            Load PGN
+          </button>
+        </div>
       </div>
     </div>
   );

@@ -1,12 +1,13 @@
 import * as React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 
 function Navbar() {
   return (
     <div className="navbar">
-      <NavLink to="/" className="nl nav-title">
-        Chess
-      </NavLink>
+      <Link to="/" className="nl nav-title" id="stylizedlogo">
+        <div>Memo</div>
+        <div>Chess</div>
+      </Link>
       <div className="nav-subtitle">PGN with video</div>
       <div className="divider"></div>
       <NavLink

@@ -2,6 +2,7 @@ import * as React from "react";
 import "../assets/css/pgnviewer.css";
 
 function PgnViewer({ tree, currentNode, goToNode, style }) {
+  console.log("currentNode:", currentNode);
   function PGNMove({ status, node, moveNumber, moveText }) {
     return (
       <div className={"pgn-move" + status}>
@@ -18,9 +19,8 @@ function PgnViewer({ tree, currentNode, goToNode, style }) {
     );
   }
 
-  const [pgntree] = React.useState(tree);
-
   function constructPgnDivs(node, layer) {
+    console.log("construct layer:", layer, node);
     let variationStart = layer > 0 ? true : false;
     let variation = [];
     let newVariation = [];
@@ -93,7 +93,11 @@ function PgnViewer({ tree, currentNode, goToNode, style }) {
     }
   }
 
-  const variations = constructPgnDivs(pgntree, 0);
+  let variations = [];
+  if (tree) {
+    variations = constructPgnDivs(tree, 0);
+  }
+
   return (
     <div className="sidebox-container" style={style}>
       <div className="divider"></div>
